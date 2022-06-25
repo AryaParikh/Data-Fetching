@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <title>JavaScript Table Filter Search</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <style type="text/css">
+        h3 span {
+            font-size: 22px;
+        }
+        h3 input.search-input {
+            width: 300px;
+            margin-left: auto;
+            float: right
+        }
+        .mt32 {
+            margin-top: 32px;
+        }
+    </style> -->
+    <style>
+        .form-control{
+            margin : 7vh;
+            width : 40vw;
+            
+        }
+    </style>
+    <nav>
+        <div class="menu">
+          <div class="logo">
+            <a href="#">Business</a>
+          </div>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="connect.html">Contact</a></li>
+        <li><a href="support.html">Support</a></li>
+          </ul>
+        </div>
+      </nav>
+</head>
+<body class="mt32">
+    <div class="container">
+        <h3>
+            <span>JavaScript Filter Table Data</span>
+            <input type="search" placeholder="Search..." class="form-control search-input" data-table="customers-list"/>
+        </h3>
+        <table class="table table-striped mt32 customers-list">
+            <thead>
+                <tr>
+                    <th>Mobile id</th>
+                    <th>Name</th>
+                    <th>Colour</th>
+                    <th>Display</th>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Micromax</td>
+                    <td>Black</td>
+                    <td>HD</td>
+                    <td>India</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Lava</td>
+                    <td>Blue</td>
+                    <td>Ultra HD</td>
+                    <td>India</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>One Plus</td>
+                    <td>Red</td>
+                    <td>HD</td>
+                    <td>China</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mi</td>
+                    <td>Black</td>
+                    <td>Ultra HD</td>
+                    <td>China</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Apple</td>
+                    <td>yellow</td>
+                    <td>HD</td>
+                    <td>USA</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>BlackBerry</td>
+                    <td>White</td>
+                    <td>Ultra HD</td>
+                    <td>India</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        (function(document) {
+            'use strict';
+
+            var TableFilter = (function(myArray) {
+                var search_input;
+
+                function _onInputSearch(e) {
+                    search_input = e.target;
+                    var tables = document.getElementsByClassName(search_input.getAttribute('data-table'));
+                    myArray.forEach.call(tables, function(table) {
+                        myArray.forEach.call(table.tBodies, function(tbody) {
+                            myArray.forEach.call(tbody.rows, function(row) {
+                                var text_content = row.textContent.toLowerCase();
+                                var search_val = search_input.value.toLowerCase();
+                                row.style.display = text_content.indexOf(search_val) > -1 ? '' : 'none';
+                            });
+                        });
+                    });
+                }
+
+                return {
+                    init: function() {
+                        var inputs = document.getElementsByClassName('search-input');
+                        myArray.forEach.call(inputs, function(input) {
+                            input.oninput = _onInputSearch;
+                        });
+                    }
+                };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'complete') {
+                    TableFilter.init();
+                }
+            });
+
+        })(document);
+    </script>
+</body>
+</html>
