@@ -1,4 +1,4 @@
-# Data-Fetching
+# RetrieveData
 This is a dummy project for fetching specific data from a database table.
 The home page offers a navbar and a lernmore key to direct you to the about page. The navbar includes home, about, data, contact and support page.
 
